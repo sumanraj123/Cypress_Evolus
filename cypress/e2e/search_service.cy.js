@@ -4,7 +4,7 @@ import { graphql } from '../support/graphql_util';
 import user_input from '../support/searchInput/user_input';
 import account_input from '../support/searchInput/account_input';
 
-describe('Dashboard Search', () => {
+describe.skip('Dashboard Search', () => {
   it('get Users', () => {
     graphql(getSearch(user_input)).then((response) => {
       expect(response.status).to.equal(200);

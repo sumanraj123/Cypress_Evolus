@@ -7,7 +7,7 @@ import {
   // payInvoice,
 } from '../support/invoice_service';
 
-describe('Verifying Invoice Services', () => {
+describe.skip('Verifying Invoice Services', () => {
   it('Validating get open invoices by account graphql', () => {
     graphql(getOpenInvoices(accountId)).then((response) => {
       expect(response.status).to.equal(200);

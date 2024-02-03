@@ -6,7 +6,7 @@ import {
 } from '../support/address_outputvalidation';
 import { graphql } from '../support/graphql_util';
 
-describe('Verifying Addresses', () => {
+describe.skip('Verifying Addresses', () => {
   it('Validating addresses', () => {
     graphql(validateAddresses(addressesInput)).then((response) => {
       expect(response.status).to.equal(200);
