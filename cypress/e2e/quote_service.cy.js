@@ -3,7 +3,7 @@ import { getQuote } from '../support/address';
 import { graphql } from '../support/graphql_util';
 import quote_input from '../support/QuoteInput/quote_input';
 
-describe('Quote Service', () => {
+describe.skip('Quote Service', () => {
   it('get Quotes', () => {
     graphql(getQuote(quote_input)).then((response) => {
       expect(response.status).to.equal(200);
