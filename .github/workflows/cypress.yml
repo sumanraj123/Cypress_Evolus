@@ -25,3 +25,10 @@ jobs:
 
       - name: Run Cypress Tests
         run: npm test
+
+      - name: Upload Cypress Test Results
+        uses: cypress-io/github-action@v2
+        with:
+          record: true
+          parallel: true
+          key: ${{ secrets.CYPRESS_RECORD_KEY }}
