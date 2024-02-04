@@ -22,7 +22,8 @@ jobs:
         run: npm install
 
       - name: Run Cypress Tests
-        run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --config-file cypress.config.js --ci-build-id "Cypress Tests - ${{ github.run_id }}"
+        run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --config-file cypress.config.js --ci-build-id "Cypress Tests - ${{ github.run_id }}" --parallel
+
 
       - name: Upload Cypress Test Results
         uses: cypress-io/github-action@v2
