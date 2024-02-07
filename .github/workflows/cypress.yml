@@ -21,6 +21,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Analyze Code with SonarQube
+        uses: sonarsource/sonarcloud-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
+
       - name: Run Cypress Tests
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --config-file cypress.config.js --ci-build-id "Cypress Tests - ${{ github.run_id }}" --parallel
 

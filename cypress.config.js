@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+require('dotenv').config()
 
 module.exports = defineConfig({
   e2e: {
@@ -6,5 +7,5 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
   },
-  projectId: "jxvi4r",
+  projectId: process.env.projectId,
 });
