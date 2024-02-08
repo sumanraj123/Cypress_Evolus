@@ -25,6 +25,7 @@ describe.skip('Verifying Addresses', () => {
     graphql(validateAccountAddress(accountAddressInput)).then((response) => {
       expect(response.status).to.equal(200);
       expect(response.body).to.have.property('data');
+      
     });
   });
 });
