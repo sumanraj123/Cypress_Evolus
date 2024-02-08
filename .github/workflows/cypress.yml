@@ -4,11 +4,30 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
-  cypress:
+  sonarcloud:
+    name: SonarCloud
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 
+      - name: Install dependencies
+        run: npm install
+      - name: Test and coverage
+        run: npm jest --coverage
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_TOKEN }}
 
+  cypress:
+    name: Cypress Tests
+    runs-on: ubuntu-latest
+    needs: sonarcloud
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -16,7 +35,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 16  # Updated Node.js version
+          node-version: 16
 
       - name: Install Dependencies
         run: npm install
@@ -29,7 +48,6 @@ jobs:
 
       - name: Run Cypress Tests
         run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }} --config-file cypress.config.js --ci-build-id "Cypress Tests - ${{ github.run_id }}" --parallel
-
 
       - name: Upload Cypress Test Results
         uses: cypress-io/github-action@v2
