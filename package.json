@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cypress run",
-    "jest":"jest"
+    "cypress_coverage": "npx cypress run --headless --browser chrome --record --key 2f5d1b1c-5102-4830-ad84-c849dd2384a0 --config-file cypress.config.js"
   },
   "keywords": [],
   "author": "",
